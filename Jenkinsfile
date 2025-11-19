@@ -1,10 +1,16 @@
 pipeline {
     agent any
 
+    environment {
+        PATH = "C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312;${env.PATH}"
+    }
+
     stages {
+
         stage('Checkout') {
             steps {
-                checkout scm
+                git branch: 'main',
+                    url: 'https://github.com/AndrexeBeta/Cronoface_Cerradura.git'
             }
         }
 
@@ -22,3 +28,4 @@ pipeline {
             }
         }
     }
+}
