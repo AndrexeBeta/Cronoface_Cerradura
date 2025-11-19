@@ -1,0 +1,1 @@
+class WiFiClient; void mqtt_setup(WiFiClient&); void mqtt_loop();

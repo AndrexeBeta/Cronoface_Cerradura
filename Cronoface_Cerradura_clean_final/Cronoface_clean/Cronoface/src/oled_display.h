@@ -1,0 +1,1 @@
+void display_setup(); void display_message(const String& msg);
