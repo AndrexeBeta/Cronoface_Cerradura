@@ -1,31 +1,31 @@
 pipeline {
-  agent any
+    agent any
 
-  stages {
-    stage('Checkout') {
-      steps {
-        checkout scm
-      }
+    environment {
+        PATH = "C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312;${env.PATH}"
     }
 
-    stage('Instalar PlatformIO') {
-      steps {
-        bat 'pip install platformio'
-      }
-    }
+    stages {
 
-    stage('Verificar PlatformIO') {
-      steps {
-        bat 'pio --version'
-      }
-    }
-
-    stage('Compilar ESP32') {
-      steps {
-        dir('Cronoface') {
-          bat 'pio run'
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/AndrexeBeta/Cronoface_Cerradura.git'
+            }
         }
-      }
+
+        stage('Instalar PlatformIO') {
+            steps {
+                bat 'pip install platformio'
+            }
+        }
+
+        stage('Compilar ESP32 con PlatformIO') {
+            steps {
+                dir('Cronoface') {
+                    bat 'pio run'
+                }
+            }
+        }
     }
-  }
 }
